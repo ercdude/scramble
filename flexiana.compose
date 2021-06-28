@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  clojure-dev:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile
+    restart: always
+    command: [ "tail", "-f", "/dev/null" ]
+    volumes:
+      - ./scramble:/src
+    ports:
+      - "5555:5555"
+
+networks:
+  flexiana_network:
