@@ -1,8 +1,7 @@
 (defproject scramble "0.1.0-SNAPSHOT"
-  :description "Scramble strings."
-  :url "http://example.com/FIXME"
-  :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
-            :url "https://www.eclipse.org/legal/epl-2.0/"}
+  :url "https://https://gitlab.com/ercdude/scramble"
+  :description "Scramble backend"
+  :license {:name "MIT LICENSE" :url ""}
   :dependencies [[org.clojure/clojure "1.10.1"]
                  ;; Compojure - A basic routing library
                  [compojure "1.6.2"]
@@ -10,7 +9,9 @@
                  [http-kit "2.5.3"]
                  ;; Ring defaults - for query params etc
                  [ring/ring-defaults "0.3.2"]]
-  :main ^:skip-aot scramble.core
+                 ;; benchmarks - measures the computation time of an expression
+                 ;; [criterium "0.4.6"]]
+  :main ^:skip-aot scramble.hello
   :target-path "target/%s"
   :profiles {:socket {:jvm-opts ["-Dclojure.server.repl={:name \"repl-server\"
                                                :port 5555

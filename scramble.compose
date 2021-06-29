@@ -9,8 +9,11 @@ services:
     command: [ "tail", "-f", "/dev/null" ]
     volumes:
       - ./scramble:/src
+    environment:
+      PORT: 3000
     ports:
       - "5555:5555"
+      - "3000:3000"
 
 networks:
   flexiana_network:
