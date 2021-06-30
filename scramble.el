@@ -14,14 +14,14 @@
 (defvar scramble-docker-host "ice"
   "The host which docker is running.")
 
-(defvar scramble-project-path "/imported/flexiana"
+(defvar scramble-project-path "/imported/scramble"
   "The path of project file.")
 
 (defvar scramble-compose-path (concat scramble-project-path
                                       "/scramble.compose")
   "The path of docker-compose file.")
 
-(defvar scramble-dev-service "flexiana_clojure-dev_1"
+(defvar scramble-dev-service "scramble_clojure-dev_1"
   "The name of the development container.")
 
 (defvar scramble-container-exec-command (list "docker" "container" "exec")
