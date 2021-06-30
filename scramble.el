@@ -30,6 +30,9 @@
 (defvar scramble-start-repl-command "lein with-profile +socket repl"
   "The command for starting repl.")
 
+(defvar scramble-cljs-compile-command "lein cljsbuild once dev"
+  "The command for building the ClojureScript to js.")
+
 (defvar scramble-run-command "lein run"
   "The command to start the scramble application")
 

@@ -1,0 +1,66 @@
+#+TITLE: Scramble Backend
+#+AUTHOR: ercdude
+#+EMAIL: ercdude@protonmail.com
+#+KEYWORDS: clojure, scramble
+#+LANGUAGE: en
+#+PROPERTY: header-args :tangle no
+
+* Introduction
+
+  An API Server for checking if a given word can be made with a given dict.
+
+* Dependencies
+** Environment
+
+   - Clojure
+   - Leiningen
+
+** Clojure
+
+   | Library             | Version | Provides        |
+   | org.clojure/clojure |  1.10.3 | clj core        |
+   | compojure           |   1.6.2 | routing library |
+   | http-kit            |   2.5.3 | http library    |
+   | ring/ring-defaults  |   0.3.2 | query params    |
+
+   The dependencies can be installed using the command: =lein deps=
+   in the root directory of the project.
+
+* Run
+
+  #+BEGIN_SRC sh
+  lein run
+  #+END_SRC
+
+* Tests
+
+   #+BEGIN_SRC sh
+   lein test
+   #+END_SRC
+
+* Architecture
+
+  This API Server serves for the following routes:
+
+  | Route    | Type | Params                  | Returns        |
+  | scramble | GET  | dict=[a-z]&target=[a-z] | true or  false  |
+  | *        | -    | -                       | 404            |
+
+  Example for reaching the backend:
+  #+BEGIN_SRC sh
+  curl --request GET "http://localhost:3000/scramble?dict=test&word=test"
+  #+END_SRC
+
+* References
+
+  1. [[https://clojure.org/reference/data_structures][https://clojure.org/reference/data_structures]]
+  2. [[https://leiningen.org][https://leiningen.org]]
+  3. [[https://github.com/weavejester/compojure][https://github.com/weavejester/compojure]]
+  4. [[https://github.com/http-kit/http-kit][https://github.com/http-kit/http-kit]]
+  5. [[https://github.com/ring-clojure/ring-defaults][https://github.com/ring-clojure/ring-defaults]]
+  6. [[https://medium.com/swlh/building-a-rest-api-in-clojure-3a1e1ae096e][https://medium.com/swlh/building-a-rest-api-in-clojure-3a1e1ae096e]]
+
+* LICENSE
+  MIT
+* EOF
+

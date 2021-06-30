@@ -6,8 +6,14 @@
    [ajax.core :as ajax]
    ))
 
-;; TODO: how do I get this dynamically? This seems odd
-(def api-url "http://ice.vms:3000/scramble")
+;; Defines the api port for sending the AJAX.
+(def api-port "3000")
+
+;; Defines the api host for sending the AJAX.
+(def api-host "ice.vms")
+
+;; Defines the api url, based on API-HOST and API-PORT, for sending the AJAX.
+(def api-url (str "http://" api-host ":" api-port "/scramble"))
 
 (re-frame/reg-event-db
  ::initialize-db
