@@ -11,7 +11,7 @@
                  [ring/ring-defaults "0.3.2"]]
                  ;; benchmarks - measures the computation time of an expression
                  ;; [criterium "0.4.6"]]
-  :main ^:skip-aot scramble.hello
+  :main ^:skip-aot scramble.core
   :target-path "target/%s"
   :profiles {:socket {:jvm-opts ["-Dclojure.server.repl={:name \"repl-server\"
                                                :port 5555

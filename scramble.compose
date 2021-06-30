@@ -8,9 +8,9 @@ services:
     restart: always
     command: [ "tail", "-f", "/dev/null" ]
     volumes:
-      - ./scramble:/src
+      - ./:/src
     environment:
-      PORT: 3000
+      SCRAMBLE_PORT: 3000
     ports:
       - "5555:5555"
       - "3000:3000"

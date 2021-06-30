@@ -15,30 +15,25 @@
              "Access-Control-Allow-Headers" "Content-Type"}
    :body (str body)})
 
-(defn index-route
-  "Index route blablaba"
-  [req]
-  (pp/pprint req)
-  (send-resp 200 "Works"))
-
 (defn scramble-route
   "Handler for scramble route."
   [req]
   (let [dict (-> req :params :dict)
-        target (-> req :params :target)]
+        word (-> req :params :word)]
+    ;; print request for debugging
     (pp/pprint req)
+    ;; send response
     (send-resp 200
                (if (and (false? (scramble/bad-char? dict))
-                        (false? (scramble/bad-char? target)))
-                 ;; dict and target valid. Check scramble.
-                 (scramble/scramble? dict target)
-                 ;; dict or target invalid. Return error
-                 (str "Bad parameters. Dictionary and target must "
+                        (false? (scramble/bad-char? word)))
+                 ;; dict and word valid. Check scramble.
+                 (scramble/scramble? dict word)
+                 ;; dict or word invalid. Return error
+                 (str "Bad parameters. Dictionary and word must "
                       "be downcase letters")))))
 
 (defroutes app-routes
-  "Routes..."
-  (GET "/" [] index-route)
+  "Defines the allowed routes and its handlers."
   (GET "/scramble" [] scramble-route)
   (route/not-found "Not found..."))
 
@@ -46,10 +41,11 @@
   "Entry point for scramble backend"
   [& args]
   ;; bind port
-  (let [port (Integer/parseInt (or (System/getenv "PORT") "3000"))]
+  (let [port (Integer/parseInt (or (System/getenv "SCRAMBLE_PORT")
+                                   "3000"))]
     ;; run the server with Ring.defaults middleware
     (server/run-server
      (wrap-defaults #'app-routes site-defaults) {:port port})
-    ;; show/logs
+    ;; TODO: get the real IP
     (println (str "Running webserver at http://127.0.0.1:" port "/"))))
 

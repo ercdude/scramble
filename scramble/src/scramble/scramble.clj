@@ -4,8 +4,11 @@
   "Verfies if the value of KEY from MAP is equal or bigger than COUNT."
   [map key count]
   (let [val (get map key)]
-    (and val
-         (<= count val))))
+    ;; returns false if val is nil, otherwise make another test
+    (if (nil? val)
+      false
+      ;; test if val is bigger or equal to count
+      (<= count val))))
 
 (defn bad-char?
   "Check if WORD has any non-letter or uppercase character."
@@ -18,10 +21,21 @@
   [dict target]
   (let [dict-items (frequencies dict)
         target-items (frequencies target)
-        target-count (count target-items)
         ocurrencies (map (fn [x] (occur<=? dict-items
                                            (first x)
                                            (last x)))
                          target-items)]
-    (= target-count
-       (count (take-while true? ocurrencies)))))
+    (empty? (filter false? ocurrencies))))
+
+;; REPL debuging
+;; (scramble? "test" "testttt")
+;;
+;; (let [dict "blabla"
+;;       target "blablala"
+;;       dict-items (frequencies dict)
+;;       target-items (frequencies target)
+;;       target-count (count target-items)]
+;;   (map (fn [x] (occur<=? dict-items
+;;                          (first x)
+;;                          (last x)))
+;;        target-items))
